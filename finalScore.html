@@ -25,9 +25,12 @@
 <body onload="load()" class="animateFadeInRight">
     <script type="text/javascript">
         var score;
+        var replayUrl;
         function load() {
             var url = window.location.href;
-            score = url.substring(url.indexOf('?') + 1, url.length);
+            score = url.substring(url.indexOf('?') + 1, url.indexOf('#'));
+            replayUrl = url.substring(url.indexOf('#') + 1, url.length);
+
             document.getElementById("scoreValue").innerHTML = score;
         }
 
@@ -36,7 +39,7 @@
                     document.getElementById("option" + choice).className + " correct";
             if (choice === 0) {
                 setTimeout(function() {
-                    window.location.href = "countryToFlag.html"
+                    window.location.href = replayUrl;
                 }, 500);
             } else if (choice === 1) {
                 setTimeout(function() {
