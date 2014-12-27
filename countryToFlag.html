@@ -8,26 +8,13 @@
 <head>
     <Title> Fun With Flags </Title>
     <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
     <link rel="stylesheet" type="text/css" href="css/choices.css">
+    <link rel="stylesheet" type="text/css" href="css/pageFooter.css">
     <style>
-        h2 {
-            text-align: center;
-            color: #ff3333;
-            margin: 6%;
-        }
-        hr {
-            margin: 2%;
-            color: white;
-        }
         img {
             width: 100%;
             vertical-align: center;
-        }
-        #scoreFooter {
-            background-color: #191919;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
         }
     </style>
 </head>
@@ -71,8 +58,10 @@
             }
         }
     </script>
-    <h2 id="countryName"></h2>
-    <hr/>
+    <div class="pageTitle">
+        <h2 id="countryName"></h2>
+        <hr/>
+    </div>
     <table>
         <tr>
             <td>
@@ -99,7 +88,7 @@
             </td>
         </tr>
     </table>
-    <div id="scoreFooter">
+    <div class="pageFooter">
         <hr/>
         <h2 id="score"/>
     </div>

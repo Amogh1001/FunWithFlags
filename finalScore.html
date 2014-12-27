@@ -1,0 +1,72 @@
+<!--
+ * Project: Fun With Flags
+ * Author: Amogh Bihani
+-->
+
+<!DOCTYPE>
+<html>
+<head>
+    <Title> Fun With Flags </Title>
+    <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
+    <link rel="stylesheet" type="text/css" href="css/choices.css">
+    <link rel="stylesheet" type="text/css" href="css/pageFooter.css">
+    <style>
+        p {
+            width: 80%;
+            margin: 10%;
+            text-align: center;
+            font-size: 400%;
+            color: #00ff66;
+        }
+    </style>
+</head>
+<body onload="load()">
+    <script type="text/javascript">
+        var score;
+        function load() {
+            var url = window.location.href;
+            score = url.substring(url.indexOf('?') + 1, url.length);
+            document.getElementById("scoreValue").innerHTML = score;
+        }
+
+        function selected(choice) {
+            document.getElementById("option" + choice).className =
+                    document.getElementById("option" + choice).className + " correct";
+            if (choice === 0) {
+                setTimeout(function() {
+                    window.location.href = "countryToFlag.html"
+                }, 500);
+            } else if (choice === 1) {
+                setTimeout(function() {
+                    // TODO: implement main menu
+                    window.location.href = "mainMenu.html"
+                }, 500);
+            }
+        }
+    </script>
+    <div class="pageTitle">
+        <h2 id="finalScoreHead">Final score</h2>
+        <hr/>
+    </div>
+    <div id="score">
+        <p id="scoreValue"/>
+    </div>
+    <div class="pageFooter">
+        <table>
+            <td>
+                <tr>
+                    <div id="option0" onclick="selected(0)" class="choice">
+                        <h3>Replay</h3>
+                    </div>
+                </tr>
+                <tr>
+                    <div id="option1" onclick="selected(1)" class="choice">
+                        <h3>Main Menu</h3>
+                    </div>
+                </tr>
+            </td>
+        </table>
+    </div>
+</body>
+</html>
