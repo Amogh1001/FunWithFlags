@@ -13,12 +13,12 @@
 .textChoice p {
     width: 100%;
     text-align: center;
-    color: #66ff99;
+    color: #ccff00;
     font-weight: bold;
 }
 .textChoice h3 {
     text-align: center;
-    color: #ff3333;
+    color: #ccff00;
 }
 .correct {
     border-color: #00ff66;

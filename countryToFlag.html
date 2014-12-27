@@ -23,13 +23,14 @@
 <body onload="load()" class="animateFadeInRight">
     <script src="scripts/countryData.js"></script>
     <script src="scripts/flagQuiz.js"></script>
+    <script src="scripts/constants.js"></script>
     <script type="text/javascript">
         var endQuiz = false;
-        var gameMode = -1;
+        var gameMode = GAME_MODE_NONE;
         var numQuestions = 0;
         var firstAttempt = false;
         function load() {
-            flagQuiz = new FlagQuiz(countryData.length, 4);
+            flagQuiz = new FlagQuiz(countryData.length, NUM_OPTIONS);
             this.nextQuestion();
             var url = window.location.href;
             gameMode = url.substring(url.indexOf('?') + 1, url.length);
@@ -52,7 +53,7 @@
         }
 
         function selected(choice) {
-            if (numQuestions == 10 && gameMode == 1)
+            if (numQuestions == NUM_QUESTIONS_IN_QUIZ && gameMode == GAME_MODE_QUIZ)
                 endQuiz = true;
 
             if (choice == flagQuiz.answer) {
@@ -79,7 +80,7 @@
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " wrong";
                 firstAttempt = false;
-                if (gameMode == 0)
+                if (gameMode == GAME_MODE_ARCADE)
                     endQuiz = true;
             }
         }

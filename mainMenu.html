@@ -3,20 +3,21 @@
  * Author: Amogh Bihani
 -->
 
+<!DOCTYPE>
 <html>
 <head>
     <title> Fun With Flags </title>
     <link rel="stylesheet" type="text/css" href="css/body.css">
     <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
     <link rel="stylesheet" type="text/css" href="css/textChoice.css">
-    <link rel="stylesheet" type="text/css" href="css/pageFooter.css">
     <link rel="stylesheet" type="text/css" href="css/fadeInRightAnimation.css">
     <link rel="stylesheet" type="text/css" href="css/subHeading.css">
 </head>
 <body class="animateFadeInRight">
+    <script src="scripts/constants.js"></script>
     <script type="text/javascript">
-        var gameType = -1;
-        var gameMode = -1;
+        var gameType = GAME_TYPE_NONE;
+        var gameMode = GAME_MODE_NONE;
         function typeSelected(choice) {
             for (var i = 0; i < 2; ++i) {
                 document.getElementById("typeOption" + i).className = "textChoice";
@@ -36,11 +37,11 @@
             launchQuiz();
         }
         function launchQuiz() {
-            if (gameMode == -1 || gameType == -1)
+            if (gameMode == GAME_MODE_NONE || gameType == GAME_TYPE_NONE)
                 return;
 
             var loc;
-            if (gameType == 0) {
+            if (gameType == GAME_TYPE_COUNTRY_TO_FLAG) {
                 loc = "countryToFlag.html";
             } else {
                 loc = "flagToCountry.html"
