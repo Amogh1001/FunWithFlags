@@ -25,13 +25,20 @@
     <script src="scripts/flagQuiz.js"></script>
     <script type="text/javascript">
         var endQuiz = false;
+        var gameMode = -1;
+        var numQuestions = 0;
+        var firstAttempt = false;
         function load() {
             flagQuiz = new FlagQuiz(countryData.length, 4);
             this.nextQuestion();
+            var url = window.location.href;
+            gameMode = url.substring(url.indexOf('?') + 1, url.length);
         }
 
         function nextQuestion() {
             flagQuiz.nextQuestion(); 
+            numQuestions++;
+            firstAttempt = true;
             document.getElementById("countryFlag").src = countryData[flagQuiz.question].source;
             for (var i = 0; i < 4; ++i) {
                 document.getElementById("option" + i).className = "textChoice";
@@ -45,18 +52,22 @@
         }
 
         function selected(choice) {
+            if (numQuestions === 10 && gameMode == 1)
+                endQuiz = true;
+
             if (choice === flagQuiz.answer) {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " correct";
+                if (firstAttempt)
+                    flagQuiz.score++;
 
                 if (endQuiz) {
                     setTimeout(function() {
-                        this.showFinalScore();
+                        showFinalScore();
                     }, 500);
                     return;
                 }
 
-                flagQuiz.score++;
                 setTimeout(function() {
                     document.body.className = "animateFadeIn";
                     this.nextQuestion();
@@ -67,7 +78,9 @@
             } else {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " wrong";
-                endQuiz = true;
+                firstAttempt = false;
+                if (gameMode == 0)
+                    endQuiz = true;
             }
         }
     </script>
