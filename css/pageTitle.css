@@ -7,10 +7,9 @@
     margin: 6%;
 }
 .pageTitle img {
-    margin-left: 35%;
-    margin-right: 35%;
+    display: block;
+    margin: auto;
     height: 11%;
-    width: 30%
 }
 .pageTitle h2 {
     text-align: center;

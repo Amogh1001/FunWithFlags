@@ -38,14 +38,14 @@ FlagQuiz.prototype.getRandomNumber = function(maxLimit) {
 
 FlagQuiz.prototype.isQuestionRecentlyAsked = function(ques) {
     for (i = 0; i < this.askedQuestions.length; ++i) {
-        if (this.askedQuestions[i] === ques)
+        if (this.askedQuestions[i] == ques)
             return true;
     }
     return false;
 };
 
 FlagQuiz.prototype.pushToRecentlyAskedQuestion = function(ques) {
-    if (this.askedQuestions.length === 50)
+    if (this.askedQuestions.length == 50)
         this.askedQuestions.shift();
     this.askedQuestions.push(ques);
 };
@@ -59,11 +59,11 @@ FlagQuiz.prototype.getChoice = function(choiceNumber) {
 };
 
 FlagQuiz.prototype.isValidChoice = function(choice, choiceNumber) {
-    if (choice === this.answer)
+    if (choice == this.answer)
         return false;
 
     for (var i = 0; i < choiceNumber; ++i) {
-        if (choice === this.choices[i])
+        if (choice == this.choices[i])
             return false;
     }
 

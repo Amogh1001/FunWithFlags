@@ -52,10 +52,10 @@
         }
 
         function selected(choice) {
-            if (numQuestions === 10 && gameMode == 1)
+            if (numQuestions == 10 && gameMode == 1)
                 endQuiz = true;
 
-            if (choice === flagQuiz.answer) {
+            if (choice == flagQuiz.answer) {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " correct";
                 if (firstAttempt)

@@ -36,11 +36,11 @@
             launchQuiz();
         }
         function launchQuiz() {
-            if (gameMode === -1 || gameType === -1)
+            if (gameMode == -1 || gameType == -1)
                 return;
 
             var loc;
-            if (gameType === 0) {
+            if (gameType == 0) {
                 loc = "countryToFlag.html";
             } else {
                 loc = "flagToCountry.html"
