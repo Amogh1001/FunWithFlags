@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
     <link rel="stylesheet" type="text/css" href="css/choices.css">
     <link rel="stylesheet" type="text/css" href="css/pageFooter.css">
+    <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
+    <link rel="stylesheet" type="text/css" href="css/fadeInRightAnimation.css">
     <style>
         img {
             width: 100%;
@@ -18,7 +20,7 @@
         }
     </style>
 </head>
-<body onload="load()">
+<body onload="load()" class="animateFadeInRight">
     <script src="scripts/countryData.js"></script>
     <script src="scripts/flagQuiz.js"></script>
     <script type="text/javascript">
@@ -29,11 +31,6 @@
         }
 
         function nextQuestion() {
-            if (endQuiz) {
-                window.location.href = "finalScore.html?" + (flagQuiz.score - 1);
-                return;
-            }
-
             flagQuiz.nextQuestion(); 
             document.getElementById("countryName").innerHTML = countryData[flagQuiz.question].name;
             for (var i = 0; i < 4; ++i) {
@@ -43,14 +40,30 @@
             document.getElementById("score").innerHTML = "Score: " + flagQuiz.score;
         }
 
+        function showFinalScore() {
+            window.location.href = "finalScore.html?" + flagQuiz.score;
+        }
+
         function selected(choice) {
             if (choice === flagQuiz.answer) {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " correct";
+
+                if (endQuiz) {
+                    setTimeout(function() {
+                        this.showFinalScore();
+                    }, 500);
+                    return;
+                }
+
                 flagQuiz.score++;
                 setTimeout(function() {
+                    document.body.className = "animateFadeIn";
                     this.nextQuestion();
                 }, 500);
+                setTimeout(function() {
+                    document.body.className = "";
+                }, 1);
             } else {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " wrong";
