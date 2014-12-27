@@ -10,6 +10,7 @@ function FlagQuiz(numCountries, numChoices) {
     this.choices = new Array(); // Country IDs in options
     this.question; // Country ID to be asked
     this.answer; // Correct choice ID
+    this.score = 0;
 }
 
 FlagQuiz.prototype.nextQuestion = function() {
@@ -37,7 +38,7 @@ FlagQuiz.prototype.getRandomNumber = function(maxLimit) {
 
 FlagQuiz.prototype.isQuestionRecentlyAsked = function(ques) {
     for (i = 0; i < this.askedQuestions.length; ++i) {
-        if (askedQuestions[i] === ques)
+        if (this.askedQuestions[i] === ques)
             return true;
     }
     return false;

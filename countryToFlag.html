@@ -1,0 +1,107 @@
+<!--
+ * Project: Fun With Flags
+ * Author: Amogh Bihani
+-->
+
+<!DOCTYPE>
+<html>
+<head>
+    <Title> Fun With Flags </Title>
+    <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="css/choices.css">
+    <style>
+        h2 {
+            text-align: center;
+            color: #ff3333;
+            margin: 6%;
+        }
+        hr {
+            margin: 2%;
+            color: white;
+        }
+        img {
+            width: 100%;
+            vertical-align: center;
+        }
+        #scoreFooter {
+            background-color: #191919;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body onload="load()">
+    <script src="scripts/countryData.js"></script>
+    <script src="scripts/flagQuiz.js"></script>
+    <script type="text/javascript">
+        var endQuiz = false;
+        function load() {
+            flagQuiz = new FlagQuiz(countryData.length, 4);
+            this.nextQuestion();
+        }
+
+        function nextQuestion() {
+            if (endQuiz) {
+                window.location.href = "finalScore.html?" + (flagQuiz.score - 1);
+                return;
+            }
+
+            flagQuiz.nextQuestion(); 
+            document.getElementById("countryName").innerHTML = countryData[flagQuiz.question].name;
+            for (var i = 0; i < 4; ++i) {
+                document.getElementById("option" + i).className = "choice";
+                document.getElementById("img" + i).src = countryData[flagQuiz.choices[i]].source;
+            }
+            document.getElementById("score").innerHTML = "Score: " + flagQuiz.score;
+        }
+
+        function selected(choice) {
+            if (choice === flagQuiz.answer) {
+                document.getElementById("option" + choice).className =
+                        document.getElementById("option" + choice).className + " correct";
+                flagQuiz.score++;
+                setTimeout(function() {
+                    this.nextQuestion();
+                }, 500);
+            } else {
+                document.getElementById("option" + choice).className =
+                        document.getElementById("option" + choice).className + " wrong";
+                endQuiz = true;
+            }
+        }
+    </script>
+    <h2 id="countryName"></h2>
+    <hr/>
+    <table>
+        <tr>
+            <td>
+                <div id="option0" onclick="selected(0)">
+                    <img id="img0"/>
+                </div>
+            </td>
+            <td>
+                <div id="option1" onclick="selected(1)">
+                    <img id="img1"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="option2" onclick="selected(2)">
+                    <img id="img2"/>
+                </div>
+            </td>
+            <td>
+                <div id="option3" onclick="selected(3)">
+                    <img id="img3"/>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div id="scoreFooter">
+        <hr/>
+        <h2 id="score"/>
+    </div>
+</body>
+</html>
