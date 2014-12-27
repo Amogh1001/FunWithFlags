@@ -9,7 +9,7 @@
     <Title> Fun With Flags </Title>
     <link rel="stylesheet" type="text/css" href="css/body.css">
     <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
-    <link rel="stylesheet" type="text/css" href="css/choices.css">
+    <link rel="stylesheet" type="text/css" href="css/textChoice.css">
     <link rel="stylesheet" type="text/css" href="css/pageFooter.css">
     <link rel="stylesheet" type="text/css" href="css/fadeInRightAnimation.css">
     <style>
@@ -43,7 +43,6 @@
                 }, 500);
             } else if (choice === 1) {
                 setTimeout(function() {
-                    // TODO: implement main menu
                     window.location.href = "mainMenu.html"
                 }, 500);
             }
@@ -60,12 +59,12 @@
         <table>
             <td>
                 <tr>
-                    <div id="option0" onclick="selected(0)" class="choice">
-                        <h3>Replay</h3>
+                    <div id="option0" onclick="selected(0)" class="textChoice">
+                        <h3>Play Again</h3>
                     </div>
                 </tr>
                 <tr>
-                    <div id="option1" onclick="selected(1)" class="choice">
+                    <div id="option1" onclick="selected(1)" class="textChoice">
                         <h3>Main Menu</h3>
                     </div>
                 </tr>

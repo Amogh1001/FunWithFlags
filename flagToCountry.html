@@ -9,7 +9,7 @@
     <Title> Fun With Flags </Title>
     <link rel="stylesheet" type="text/css" href="css/body.css">
     <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
-    <link rel="stylesheet" type="text/css" href="css/imageChoice.css">
+    <link rel="stylesheet" type="text/css" href="css/textChoice.css">
     <link rel="stylesheet" type="text/css" href="css/pageFooter.css">
     <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
     <link rel="stylesheet" type="text/css" href="css/fadeInRightAnimation.css">
@@ -32,10 +32,10 @@
 
         function nextQuestion() {
             flagQuiz.nextQuestion(); 
-            document.getElementById("countryName").innerHTML = countryData[flagQuiz.question].name;
+            document.getElementById("countryFlag").src = countryData[flagQuiz.question].source;
             for (var i = 0; i < 4; ++i) {
-                document.getElementById("option" + i).className = "imageChoice";
-                document.getElementById("img" + i).src = countryData[flagQuiz.choices[i]].source;
+                document.getElementById("option" + i).className = "textChoice";
+                document.getElementById("name" + i).innerHTML = countryData[flagQuiz.choices[i]].name;
             }
             document.getElementById("score").innerHTML = "Score: " + flagQuiz.score;
         }
@@ -72,33 +72,29 @@
         }
     </script>
     <div class="pageTitle">
-        <h2 id="countryName"></h2>
+        <img id="countryFlag"></h2>
         <hr/>
     </div>
     <table>
         <tr>
-            <td>
-                <div id="option0" onclick="selected(0)">
-                    <img id="img0"/>
-                </div>
-            </td>
-            <td>
-                <div id="option1" onclick="selected(1)">
-                    <img id="img1"/>
-                </div>
-            </td>
+            <div id="option0" onclick="selected(0)">
+                <p id="name0"/>
+            </div>
         </tr>
         <tr>
-            <td>
-                <div id="option2" onclick="selected(2)">
-                    <img id="img2"/>
-                </div>
-            </td>
-            <td>
-                <div id="option3" onclick="selected(3)">
-                    <img id="img3"/>
-                </div>
-            </td>
+            <div id="option1" onclick="selected(1)">
+                <p id="name1"/>
+            </div>
+        </tr>
+        <tr>
+            <div id="option2" onclick="selected(2)">
+                <p id="name2"/>
+            </div>
+        </tr>
+        <tr>
+            <div id="option3" onclick="selected(3)">
+                <p id="name3"/>
+            </div>
         </tr>
     </table>
     <div class="pageFooter">

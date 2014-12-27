@@ -8,6 +8,7 @@
     position: fixed;
     bottom: 0;
     margin: 6%;
+    margin-bottom: 0%;
     width: 88%;
 }
 
@@ -15,7 +16,7 @@
     color: white;
 }
 
-.pageFooter h2, h3 {
+.pageFooter h2 {
     text-align: center;
     color: #ff3333;
     margin: 6%;

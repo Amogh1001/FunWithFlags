@@ -1,0 +1,93 @@
+<!--
+ * Project: Fun With Flags
+ * Author: Amogh Bihani
+-->
+
+<html>
+<head>
+    <title> Fun With Flags </title>
+    <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
+    <link rel="stylesheet" type="text/css" href="css/textChoice.css">
+    <link rel="stylesheet" type="text/css" href="css/pageFooter.css">
+    <link rel="stylesheet" type="text/css" href="css/fadeInRightAnimation.css">
+    <link rel="stylesheet" type="text/css" href="css/subHeading.css">
+</head>
+<body class="animateFadeInRight">
+    <script type="text/javascript">
+        var gameType = -1;
+        var gameMode = -1;
+        function typeSelected(choice) {
+            for (var i = 0; i < 2; ++i) {
+                document.getElementById("typeOption" + i).className = "textChoice";
+            }
+            document.getElementById("typeOption" + choice).className =
+                    document.getElementById("typeOption" + choice).className + " correct";
+            gameType = choice;
+            launchQuiz();
+        }
+        function modeSelected(choice) {
+            for (var i = 0; i < 2; ++i) {
+                document.getElementById("modeOption" + i).className = "textChoice";
+            }
+            document.getElementById("modeOption" + choice).className =
+                    document.getElementById("modeOption" + choice).className + " correct";
+            gameMode = choice;
+            launchQuiz();
+        }
+        function launchQuiz() {
+            if (gameMode === -1 || gameType === -1)
+                return;
+
+            var loc;
+            if (gameType === 0) {
+                loc = "countryToFlag.html";
+            } else {
+                loc = "flagToCountry.html"
+            }
+
+            setTimeout(function() {
+                window.location.href = loc + "?" + gameMode;
+            }, 500);
+        }
+    </script>
+    <div class="pageTitle">
+        <h2>Fun With Flags</h2>
+        <hr/>
+    </div>
+    <div class="subHeading">
+        <p>Game Type:</p>
+    </div>
+    <table>
+        <td>
+            <tr>
+                <div class="textChoice" id="typeOption0" onclick="typeSelected(0)">
+                    <p>Country to Flag</p>
+                </div>
+            </tr>
+            <tr>
+                <div class="textChoice" id="typeOption1" onclick="typeSelected(1)">
+                    <p>Flag to Country</p>
+                </div>
+            </tr>
+        </td>
+    </table>
+    <div class="subHeading">
+        <p>Game Mode:</p>
+    </div>
+    <table>
+        <td>
+            <tr>
+                <div class="textChoice" id="modeOption0" onclick="modeSelected(0)">
+                    <p>Arcade</p>
+                </div>
+            </tr>
+            <tr>
+                <div class="textChoice" id="modeOption1" onclick="modeSelected(1)">
+                    <p>Quiz</p>
+                </div>
+            </tr>
+        </td>
+    </table>
+</body>
+</html>
