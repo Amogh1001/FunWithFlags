@@ -11,6 +11,10 @@
     margin: auto;
     height: 11%;
 }
+.pageTitle h1 {
+    text-align: center;
+    color: #ff3333;
+}
 .pageTitle h2 {
     text-align: center;
     color: #ff3333;

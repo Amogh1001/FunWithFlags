@@ -1,0 +1,16 @@
+/**
+ * Project: Fun With Flags
+ * Author: Amogh Bihani
+ */
+
+.plainText {
+    margin: 6%;
+}
+.plainText p {
+    color: white;
+}
+.plainText hr {
+    color: #ccff00;
+    margin: auto;
+    width: 20%;
+}
