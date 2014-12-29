@@ -6,6 +6,7 @@
 .imageChoice {
     margin: 6%;
     padding: 4%;
+    width: 28%;
     border-radius: 5px;
     border: 2px solid #cc9900;
 }

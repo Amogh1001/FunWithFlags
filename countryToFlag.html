@@ -7,23 +7,34 @@
 <html>
 <head>
     <Title> Fun With Flags </Title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/body.css">
     <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
     <link rel="stylesheet" type="text/css" href="css/imageChoice.css">
     <link rel="stylesheet" type="text/css" href="css/pageFooter.css">
     <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
-    <link rel="stylesheet" type="text/css" href="css/fadeInRightAnimation.css">
+    <link rel="stylesheet" type="text/css" href="css/fadeInUpAnimation.css">
     <style>
         img {
             width: 100%;
             vertical-align: center;
         }
+        .optionContainer {
+            display: inline-block;
+            width: 100%;
+        }
+        #option0, #option2 {
+            float: left;
+        }
+        #option1, #option3 {;
+            float: right;
+        }
     </style>
 </head>
-<body onload="load()" class="animateFadeInRight">
-    <script src="scripts/countryData.js"></script>
-    <script src="scripts/flagQuiz.js"></script>
-    <script src="scripts/constants.js"></script>
+<body onload="load()" class="animatefadeInUp">
+    <script src="js/countryData.js"></script>
+    <script src="js/flagQuiz.js"></script>
+    <script src="js/constants.js"></script>
     <script type="text/javascript">
         var endQuiz = false;
         var gameMode = GAME_MODE_NONE;
@@ -89,32 +100,22 @@
         <h2 id="countryName"></h2>
         <hr/>
     </div>
-    <table>
-        <tr>
-            <td>
-                <div id="option0" onclick="selected(0)">
-                    <img id="img0"/>
-                </div>
-            </td>
-            <td>
-                <div id="option1" onclick="selected(1)">
-                    <img id="img1"/>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id="option2" onclick="selected(2)">
-                    <img id="img2"/>
-                </div>
-            </td>
-            <td>
-                <div id="option3" onclick="selected(3)">
-                    <img id="img3"/>
-                </div>
-            </td>
-        </tr>
-    </table>
+    <div class="optionContainer">
+        <div id="option0" onclick="selected(0)">
+            <img id="img0"/>
+        </div>
+        <div id="option1" onclick="selected(1)">
+            <img id="img1"/>
+        </div>
+    </div>
+    <div class="optionContainer">
+        <div id="option2" onclick="selected(2)">
+            <img id="img2"/>
+        </div>
+        <div id="option3" onclick="selected(3)">
+            <img id="img3"/>
+        </div>
+    </div>
     <div class="pageFooter">
         <hr/>
         <h2 id="score"/>
