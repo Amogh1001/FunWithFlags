@@ -1,0 +1,64 @@
+<!--
+ * Project: Fun With Flags
+ * Author: Amogh Bihani
+-->
+
+<!DOCTYPE>
+<html>
+<head>
+    <title> Fun With Flags </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
+    <link rel="stylesheet" type="text/css" href="css/fadeInUpAnimation.css">
+    <style>
+        table {
+            margin: 2%;
+            width: 96%;
+            border-spacing: 10px;
+        }
+        .imageCell {
+            width: 25%;
+            margin-right: 25%;
+        }
+        img {
+            margin: 6%;
+            width: 88%;
+            border-radius: 2px;
+        }
+        p {
+            text-align: left;
+            color: white;
+            font-size: 110%;
+        }
+    </style>
+</head>
+<body onload="load()" class="animateFadeInUp">
+    <script src="js/countryData.js"></script>
+    <script type="text/javascript">
+        function load() {
+            var tbl=document.getElementById('table');
+            var tbdy=document.createElement('tbody');
+            for(var i = countryData.length - 1; i >= 0; --i) {
+                var tr = tbl.insertRow();
+
+                var nameTd = tr.insertCell();
+                var name = nameTd.appendChild(document.createElement('p'));
+                name.innerHTML = countryData[i].name;
+
+                var imgTd = tr.insertCell();
+                imgTd.className = "imageCell";
+                var img = imgTd.appendChild(document.createElement('img'));
+                img.src = countryData[i].source;
+            }
+            tbl.appendChild(tbdy);
+        }
+    </script>
+    <div class="pageTitle">
+        <h1>List of Countries</h1>
+        <hr/>
+    </div>
+    <table id="table">
+    </table>
+</body>
+</html>
