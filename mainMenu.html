@@ -12,84 +12,57 @@
     <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
     <link rel="stylesheet" type="text/css" href="css/textChoice.css">
     <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
-    <link rel="stylesheet" type="text/css" href="css/subHeading.css">
+    <style>
+        #gameTitle {
+            margin-top: 10%;
+        }
+        #gameTitle hr {
+            margin-top: 10%;
+        }
+    </style>
 </head>
 <body class="animateFadeIn">
-    <script src="js/constants.js"></script>
     <script type="text/javascript">
-        var gameType = GAME_TYPE_NONE;
-        var gameMode = GAME_MODE_NONE;
-        function typeSelected(choice) {
+        function selected(choice) {
             for (var i = 0; i < 2; ++i) {
-                document.getElementById("typeOption" + i).className = "textChoice";
+                document.getElementById("option" + i).className = "textChoice";
             }
-            document.getElementById("typeOption" + choice).className =
-                    document.getElementById("typeOption" + choice).className + " correct";
-            gameType = choice;
-            launchQuiz();
-        }
-        function modeSelected(choice) {
-            for (var i = 0; i < 2; ++i) {
-                document.getElementById("modeOption" + i).className = "textChoice";
-            }
-            document.getElementById("modeOption" + choice).className =
-                    document.getElementById("modeOption" + choice).className + " correct";
-            gameMode = choice;
-            launchQuiz();
-        }
-        function launchQuiz() {
-            if (gameMode == GAME_MODE_NONE || gameType == GAME_TYPE_NONE)
-                return;
-
-            var loc;
-            if (gameType == GAME_TYPE_COUNTRY_TO_FLAG) {
-                loc = "countryToFlag.html";
-            } else {
-                loc = "flagToCountry.html"
-            }
-
+            document.getElementById("option" + choice).className =
+                    document.getElementById("option" + choice).className + " correct";
+            
             setTimeout(function() {
-                window.location.href = loc + "?" + gameMode;
-            }, 500);
+                window.location.href = menuLocation(choice);
+            }, 500);            
+        }
+        function menuLocation(choice) {
+            switch(choice) {
+            case 0:
+                return "selectGame.html"
+            case 1:
+                return "gameRules.html"
+            case 2:
+                return "listOfCountries.html"
+            case 3:
+                return "aboutGame.html"
+            };
         }
     </script>
-    <div class="pageTitle">
-        <h2>Fun With Flags</h2>
+    <div class="pageTitle" id="gameTitle">
+        <h1>Fun With</h1>
+        <h1>Flags</h1>
         <hr/>
     </div>
-    <div class="subHeading">
-        <p>Game Type:</p>
+    <div id="option0" class="textChoice" onclick="selected(0)">
+        <p>Play</p>
     </div>
-    <table>
-        <td>
-            <tr>
-                <div class="textChoice" id="typeOption0" onclick="typeSelected(0)">
-                    <p>Country to Flag</p>
-                </div>
-            </tr>
-            <tr>
-                <div class="textChoice" id="typeOption1" onclick="typeSelected(1)">
-                    <p>Flag to Country</p>
-                </div>
-            </tr>
-        </td>
-    </table>
-    <div class="subHeading">
-        <p>Game Mode:</p>
+    <div id="option1" class="textChoice" onclick="selected(1)">
+        <p>Rules</p>
     </div>
-    <table>
-        <td>
-            <tr>
-                <div class="textChoice" id="modeOption0" onclick="modeSelected(0)">
-                    <p>Arcade</p>
-                </div>
-            </tr>
-            <tr>
-                <div class="textChoice" id="modeOption1" onclick="modeSelected(1)">
-                    <p>Quiz</p>
-                </div>
-            </tr>
-        </td>
-    </table>
+    <div id="option2" class="textChoice" onclick="selected(2)">
+        <p>List of Countries</p>
+    </div>
+    <div id="option3" class="textChoice" onclick="selected(3)">
+        <p>About Game</p>
+    </div>
 </body>
 </html>
