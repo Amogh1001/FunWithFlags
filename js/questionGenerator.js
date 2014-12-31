@@ -3,7 +3,7 @@
  * Author: Amogh Bihani
  */
 
-function FlagQuiz(numCountries, numChoices) {
+function QuestionGenerator(numCountries, numChoices) {
     this.numCountries = numCountries; // Number of countries in database
     this.numChoices = numChoices; // Number of choices to be given
     this.askedQuestions = new Array(); // Country ID asked
@@ -13,7 +13,7 @@ function FlagQuiz(numCountries, numChoices) {
     this.score = 0;
 }
 
-FlagQuiz.prototype.nextQuestion = function() {
+QuestionGenerator.prototype.nextQuestion = function() {
     var tempQues;
     do {
         tempQues = this.getRandomNumber(this.numCountries);
@@ -32,11 +32,11 @@ FlagQuiz.prototype.nextQuestion = function() {
     }
 };
 
-FlagQuiz.prototype.getRandomNumber = function(maxLimit) {
+QuestionGenerator.prototype.getRandomNumber = function(maxLimit) {
     return Math.floor(Math.random() * maxLimit);
 };
 
-FlagQuiz.prototype.isQuestionRecentlyAsked = function(ques) {
+QuestionGenerator.prototype.isQuestionRecentlyAsked = function(ques) {
     for (i = 0; i < this.askedQuestions.length; ++i) {
         if (this.askedQuestions[i] == ques)
             return true;
@@ -44,13 +44,13 @@ FlagQuiz.prototype.isQuestionRecentlyAsked = function(ques) {
     return false;
 };
 
-FlagQuiz.prototype.pushToRecentlyAskedQuestion = function(ques) {
+QuestionGenerator.prototype.pushToRecentlyAskedQuestion = function(ques) {
     if (this.askedQuestions.length == 50)
         this.askedQuestions.shift();
     this.askedQuestions.push(ques);
 };
 
-FlagQuiz.prototype.getChoice = function(choiceNumber) {        
+QuestionGenerator.prototype.getChoice = function(choiceNumber) {        
     var tempChoice;
     do {
         tempChoice = this.getRandomNumber(this.numCountries);
@@ -58,7 +58,7 @@ FlagQuiz.prototype.getChoice = function(choiceNumber) {
     return tempChoice;
 };
 
-FlagQuiz.prototype.isValidChoice = function(choice, choiceNumber) {
+QuestionGenerator.prototype.isValidChoice = function(choice, choiceNumber) {
     if (choice == this.answer)
         return false;
 

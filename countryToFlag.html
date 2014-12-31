@@ -33,7 +33,7 @@
 </head>
 <body onload="load()" class="animatefadeIn">
     <script src="js/countryData.js"></script>
-    <script src="js/flagQuiz.js"></script>
+    <script src="js/questionGenerator.js"></script>
     <script src="js/constants.js"></script>
     <script type="text/javascript">
         var endQuiz = false;
@@ -41,37 +41,37 @@
         var numQuestions = 0;
         var firstAttempt = false;
         function load() {
-            flagQuiz = new FlagQuiz(countryData.length, NUM_OPTIONS);
+            questionGenerator = new QuestionGenerator(countryData.length, NUM_OPTIONS);
             this.nextQuestion();
             var url = window.location.href;
             gameMode = url.substring(url.indexOf('?') + 1, url.length);
         }
 
         function nextQuestion() {
-            flagQuiz.nextQuestion();
+            questionGenerator.nextQuestion();
             numQuestions++;
             firstAttempt = true;
-            document.getElementById("countryName").innerHTML = countryData[flagQuiz.question].name;
+            document.getElementById("countryName").innerHTML = countryData[questionGenerator.question].name;
             for (var i = 0; i < 4; ++i) {
                 document.getElementById("option" + i).className = "imageChoice";
-                document.getElementById("img" + i).src = countryData[flagQuiz.choices[i]].source;
+                document.getElementById("img" + i).src = countryData[questionGenerator.choices[i]].source;
             }
-            document.getElementById("score").innerHTML = "Score: " + flagQuiz.score;
+            document.getElementById("score").innerHTML = "Score: " + questionGenerator.score;
         }
 
         function showFinalScore() {
-            window.location.href = "finalScore.html?" + flagQuiz.score + "#" + window.location.href;
+            window.location.href = "finalScore.html?" + questionGenerator.score + "#" + window.location.href;
         }
 
         function selected(choice) {
             if (numQuestions == NUM_QUESTIONS_IN_QUIZ && gameMode == GAME_MODE_QUIZ)
                 endQuiz = true;
 
-            if (choice == flagQuiz.answer) {
+            if (choice == questionGenerator.answer) {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " correct";
                 if (firstAttempt)
-                    flagQuiz.score++;
+                    questionGenerator.score++;
 
                 if (endQuiz) {
                     setTimeout(function() {
