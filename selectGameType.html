@@ -1,0 +1,46 @@
+<!--
+ * Project: Fun With Flags
+ * Author: Amogh Bihani
+-->
+
+<!DOCTYPE>
+<html>
+<head>
+    <title> Fun With Flags </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
+    <link rel="stylesheet" type="text/css" href="css/textChoice.css">
+    <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
+</head>
+<body class="animateFadeIn">
+    <script src="js/constants.js"></script>
+    <script type="text/javascript">
+        var gameType = GAME_TYPE_NONE;
+        function selected(choice) {
+            for (var i = 0; i < 2; ++i) {
+                document.getElementById("option" + i).className = "textChoice";
+            }
+            document.getElementById("option" + choice).className =
+                    document.getElementById("option" + choice).className + " correct";
+            gameType = choice;
+            selectMode();
+        }
+        function selectMode() {
+            setTimeout(function() {
+                window.location.href = "selectGameMode.html?" + gameType;
+            }, 500);
+        }
+    </script>
+    <div class="pageTitle">
+        <h2>Game Type</h2>
+        <hr/>
+    </div>
+    <div class="textChoice" id="option0" onclick="selected(0)">
+        <p>Country to Flag</p>
+    </div>
+    <div class="textChoice" id="option1" onclick="selected(1)">
+        <p>Flag to Country</p>
+    </div>
+</body>
+</html>
