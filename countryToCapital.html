@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
     <style>
         img {
+            width: 100%;
+            vertical-align: center;
             border-radius: 2px;
         }
     </style>
@@ -54,11 +56,11 @@
         }
 
         function showNextQuestion() {
-            quizMaster.nextQuestion(); 
-            document.getElementById("countryFlag").src = countryData[quizMaster.question].source;
+            quizMaster.nextQuestion();
+            document.getElementById("countryName").innerHTML = countryData[quizMaster.question].name;
             for (var i = 0; i < 4; ++i) {
                 document.getElementById("option" + i).className = "textChoice";
-                document.getElementById("name" + i).innerHTML = countryData[quizMaster.choices[i]].name;
+                document.getElementById("name" + i).innerHTML = countryData[quizMaster.choices[i]].capital;
             }
             document.getElementById("score").innerHTML = "Score: " + quizMaster.score;
         }
@@ -86,7 +88,7 @@
         }
     </script>
     <div class="pageTitle">
-        <img id="countryFlag"></h2>
+        <h2 id="countryName"></h2>
         <hr/>
     </div>
     <div id="option0" onclick="selected(0)">

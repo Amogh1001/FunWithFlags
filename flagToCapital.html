@@ -58,7 +58,7 @@
             document.getElementById("countryFlag").src = countryData[quizMaster.question].source;
             for (var i = 0; i < 4; ++i) {
                 document.getElementById("option" + i).className = "textChoice";
-                document.getElementById("name" + i).innerHTML = countryData[quizMaster.choices[i]].name;
+                document.getElementById("name" + i).innerHTML = countryData[quizMaster.choices[i]].capital;
             }
             document.getElementById("score").innerHTML = "Score: " + quizMaster.score;
         }
