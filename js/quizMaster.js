@@ -70,7 +70,7 @@ QuizMaster.prototype.getChoice = function(choiceNumber) {
 };
 
 QuizMaster.prototype.isValidChoice = function(choice, choiceNumber) {
-    if (choice == this.answer)
+    if (choice == this.question)
         return false;
 
     for (var i = 0; i < choiceNumber; ++i) {
