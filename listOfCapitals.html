@@ -1,0 +1,54 @@
+<!--
+ * Project: Fun With Flags
+ * Author: Amogh Bihani
+-->
+
+<!DOCTYPE>
+<html>
+<head>
+    <title> Fun With Flags </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
+    <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
+    <style>
+        table {
+            margin: 2%;
+            width: 96%;
+            border-spacing: 10px;
+        }
+        p {
+            text-align: left;
+            color: white;
+            font-size: 110%;
+        }
+    </style>
+</head>
+<body onload="load()" class="animateFadeIn">
+    <script src="js/countryData.js"></script>
+    <script type="text/javascript">
+        function load() {
+            var tbl=document.getElementById('table');
+            var tbdy=document.createElement('tbody');
+            for(var i = countryData.length - 1; i >= 0; --i) {
+                var tr = tbl.insertRow();
+
+                var imgTd = tr.insertCell();
+                var img = imgTd.appendChild(document.createElement('p'));
+                img.innerHTML = countryData[i].capital;
+
+                var nameTd = tr.insertCell();
+                var name = nameTd.appendChild(document.createElement('p'));
+                name.innerHTML = countryData[i].name;
+            }
+            tbl.appendChild(tbdy);
+        }
+    </script>
+    <div class="pageTitle">
+        <h1>List of Capitals</h1>
+        <hr/>
+    </div>
+    <table id="table">
+    </table>
+</body>
+</html>
