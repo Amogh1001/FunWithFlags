@@ -4,7 +4,8 @@
  */
 
 .pageTitle {
-    margin: 6%;
+    background-color: #191919;
+    margin-top: 6%;
 }
 .pageTitle img {
     display: block;
@@ -21,4 +22,6 @@
 }
 .pageTitle hr {
     color: white;
+    margin-left: 6%;
+    margin-right: 6%;
 }

@@ -8,12 +8,12 @@
     position: fixed;
     bottom: 0;
     margin-top: 6%;
-    width: 94%;
+    width: 100%;
 }
 
 .pageFooter hr {
-    margin: 6%;
-    margin-bottom: 0;
+    margin-left: 6%;
+    margin-right: 6%;
     color: white;
 }
 
