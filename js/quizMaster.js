@@ -3,7 +3,7 @@
  * Author: Amogh Bihani
  */
 
-function QuestionGenerator(numCountries, gameMode) {
+function QuizMaster(numCountries, gameMode) {
     this.numCountries = numCountries; // Number of countries in database
     this.gameMode = gameMode;
     this.numChoices = NUM_OPTIONS; // Number of choices to be given
@@ -22,7 +22,7 @@ function QuestionGenerator(numCountries, gameMode) {
     }
 }
 
-QuestionGenerator.prototype.nextQuestion = function() {
+QuizMaster.prototype.nextQuestion = function() {
     var tempQues;
     this.firstAttempt = true;
     ++this.numQuestions;
@@ -43,11 +43,11 @@ QuestionGenerator.prototype.nextQuestion = function() {
     }
 };
 
-QuestionGenerator.prototype.getRandomNumber = function(maxLimit) {
+QuizMaster.prototype.getRandomNumber = function(maxLimit) {
     return Math.floor(Math.random() * maxLimit);
 };
 
-QuestionGenerator.prototype.isQuestionRecentlyAsked = function(ques) {
+QuizMaster.prototype.isQuestionRecentlyAsked = function(ques) {
     for (i = 0; i < this.askedQuestions.length; ++i) {
         if (this.askedQuestions[i] == ques)
             return true;
@@ -55,13 +55,13 @@ QuestionGenerator.prototype.isQuestionRecentlyAsked = function(ques) {
     return false;
 };
 
-QuestionGenerator.prototype.pushToRecentlyAskedQuestion = function(ques) {
+QuizMaster.prototype.pushToRecentlyAskedQuestion = function(ques) {
     if (this.askedQuestions.length == 50)
         this.askedQuestions.shift();
     this.askedQuestions.push(ques);
 };
 
-QuestionGenerator.prototype.getChoice = function(choiceNumber) {        
+QuizMaster.prototype.getChoice = function(choiceNumber) {        
     var tempChoice;
     do {
         tempChoice = this.getRandomNumber(this.numCountries);
@@ -69,7 +69,7 @@ QuestionGenerator.prototype.getChoice = function(choiceNumber) {
     return tempChoice;
 };
 
-QuestionGenerator.prototype.isValidChoice = function(choice, choiceNumber) {
+QuizMaster.prototype.isValidChoice = function(choice, choiceNumber) {
     if (choice == this.answer)
         return false;
 
@@ -81,7 +81,7 @@ QuestionGenerator.prototype.isValidChoice = function(choice, choiceNumber) {
     return true;
 };
 
-QuestionGenerator.prototype.isCorrect = function(choice) {
+QuizMaster.prototype.isCorrect = function(choice) {
     if (choice == this.answer) {
         if (this.firstAttempt)
             ++this.score;
@@ -94,7 +94,7 @@ QuestionGenerator.prototype.isCorrect = function(choice) {
     }
 };
 
-QuestionGenerator.prototype.shouldEndQuiz = function() {
+QuizMaster.prototype.shouldEndQuiz = function() {
     if (this.gameMode == GAME_MODE_QUIZ
             && this.numQuestions == NUM_QUESTIONS_IN_QUIZ) {
         this.endQuiz = true;
@@ -102,7 +102,7 @@ QuestionGenerator.prototype.shouldEndQuiz = function() {
     return this.endQuiz;
 };
 
-QuestionGenerator.prototype.timeCountdown = function() {
+QuizMaster.prototype.timeCountdown = function() {
     var timeLeft = NUM_SECONDS_TIME_TRIAL;
     setInterval(function() {
         --timeLeft;

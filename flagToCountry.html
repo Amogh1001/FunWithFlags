@@ -21,7 +21,7 @@
 </head>
 <body onload="load()" class="animatefadeIn">
     <script src="js/countryData.js"></script>
-    <script src="js/questionGenerator.js"></script>
+    <script src="js/quizMaster.js"></script>
     <script src="js/constants.js"></script>
     <script type="text/javascript">
         function load() {
@@ -30,12 +30,12 @@
             }, 500);
             var url = window.location.href;
             var gameMode = url.substring(url.indexOf('?') + 1, url.length);
-            questionGenerator = new QuestionGenerator(countryData.length, gameMode);
+            quizMaster = new QuizMaster(countryData.length, gameMode);
             showNextQuestion();
         }
 
         function animateAndNextQuestion() {
-            if (questionGenerator.shouldEndQuiz()) {
+            if (quizMaster.shouldEndQuiz()) {
                 showFinalScore();
                 return;
             }
@@ -50,23 +50,23 @@
         }
 
         function showNextQuestion() {
-            questionGenerator.nextQuestion(); 
-            document.getElementById("countryFlag").src = countryData[questionGenerator.question].source;
+            quizMaster.nextQuestion(); 
+            document.getElementById("countryFlag").src = countryData[quizMaster.question].source;
             for (var i = 0; i < 4; ++i) {
                 document.getElementById("option" + i).className = "textChoice";
-                document.getElementById("name" + i).innerHTML = countryData[questionGenerator.choices[i]].name;
+                document.getElementById("name" + i).innerHTML = countryData[quizMaster.choices[i]].name;
             }
-            document.getElementById("score").innerHTML = "Score: " + questionGenerator.score;
+            document.getElementById("score").innerHTML = "Score: " + quizMaster.score;
         }
 
         function showFinalScore() {
             setTimeout(function() {
-                window.location.href = "finalScore.html?" + questionGenerator.score + "#" + window.location.href;
+                window.location.href = "finalScore.html?" + quizMaster.score + "#" + window.location.href;
             }, 500);
         }
 
         function selected(choice) {
-            if (questionGenerator.isCorrect(choice)) {
+            if (quizMaster.isCorrect(choice)) {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " correct";
 
