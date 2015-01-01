@@ -24,23 +24,33 @@
     <script src="js/questionGenerator.js"></script>
     <script src="js/constants.js"></script>
     <script type="text/javascript">
-        var endQuiz = false;
-        var gameMode = GAME_MODE_NONE;
-        var numQuestions = 0;
-        var firstAttempt = false;
         function load() {
             setTimeout(function() {
                 document.body.className = "";
             }, 500);
-            questionGenerator = new QuestionGenerator(countryData.length, NUM_OPTIONS);
-            this.nextQuestion();
             var url = window.location.href;
-            gameMode = url.substring(url.indexOf('?') + 1, url.length);
+            var gameMode = url.substring(url.indexOf('?') + 1, url.length);
+            questionGenerator = new QuestionGenerator(countryData.length, gameMode);
+            showNextQuestion();
         }
 
-        function nextQuestion() {
+        function animateAndNextQuestion() {
+            if (questionGenerator.shouldEndQuiz()) {
+                showFinalScore();
+                return;
+            }
+
+            setTimeout(function() {
+                document.body.className = "animateFadeIn";
+                showNextQuestion();
+            }, 500);
+            setTimeout(function() {
+                document.body.className = "";
+            }, 1000);
+        }
+
+        function showNextQuestion() {
             questionGenerator.nextQuestion(); 
-            numQuestions++;
             document.getElementById("countryFlag").src = countryData[questionGenerator.question].source;
             for (var i = 0; i < 4; ++i) {
                 document.getElementById("option" + i).className = "textChoice";
@@ -50,41 +60,25 @@
         }
 
         function showFinalScore() {
-            window.location.href = "finalScore.html?" + questionGenerator.score + "#" + window.location.href;
+            setTimeout(function() {
+                window.location.href = "finalScore.html?" + questionGenerator.score + "#" + window.location.href;
+            }, 500);
         }
 
         function selected(choice) {
-            if (numQuestions == NUM_QUESTIONS_IN_QUIZ && gameMode == GAME_MODE_QUIZ)
-                endQuiz = true;
-
             if (questionGenerator.isCorrect(choice)) {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " correct";
-
-                if (endQuiz) {
-                    setTimeout(function() {
-                        showFinalScore();
-                    }, 500);
-                    return;
-                }
 
                 animateAndNextQuestion();
             } else {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " wrong";
-                if (gameMode == GAME_MODE_ARCADE)
-                    endQuiz = true;
             }
         }
 
-        function animateAndNextQuestion() {
-            setTimeout(function() {
-                document.body.className = "animateFadeIn";
-                this.nextQuestion();
-            }, 500);
-            setTimeout(function() {
-                document.body.className = "";
-            }, 1000);
+        function showRemainingTime(timeLeft) {
+            document.getElementById("remainingTime").innerHTML = "Time Left: " + timeLeft;
         }
     </script>
     <div class="pageTitle">
@@ -116,6 +110,7 @@
     <div class="pageFooter">
         <hr/>
         <h2 id="score"/>
+        <h2 id="remainingTime"/>
     </div>
 </body>
 </html>

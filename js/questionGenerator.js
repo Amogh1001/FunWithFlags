@@ -3,20 +3,29 @@
  * Author: Amogh Bihani
  */
 
-function QuestionGenerator(numCountries, numChoices) {
+function QuestionGenerator(numCountries, gameMode) {
     this.numCountries = numCountries; // Number of countries in database
-    this.numChoices = numChoices; // Number of choices to be given
+    this.gameMode = gameMode;
+    this.numChoices = NUM_OPTIONS; // Number of choices to be given
     this.askedQuestions = new Array(); // Country ID asked
     this.choices = new Array(); // Country IDs in options
     this.question; // Country ID to be asked
     this.answer; // Correct choice ID
     this.score = 0;
     this.firstAttempt = true;
+    this.numQuestions = 0;
+    this.endQuiz = false;
+
+    if (this.gameMode == GAME_MODE_TIME_TRIAL) {
+        this.timeCountdown();
+        showRemainingTime(NUM_SECONDS_TIME_TRIAL);
+    }
 }
 
 QuestionGenerator.prototype.nextQuestion = function() {
     var tempQues;
     this.firstAttempt = true;
+    ++this.numQuestions;
     do {
         tempQues = this.getRandomNumber(this.numCountries);
     } while(this.isQuestionRecentlyAsked(tempQues));
@@ -79,6 +88,28 @@ QuestionGenerator.prototype.isCorrect = function(choice) {
         return true;
     } else {
         this.firstAttempt = false;
+        if (this.gameMode == GAME_MODE_ARCADE)
+            this.endQuiz = true;
         return false;
     }
+};
+
+QuestionGenerator.prototype.shouldEndQuiz = function() {
+    if (this.gameMode == GAME_MODE_QUIZ
+            && this.numQuestions == NUM_QUESTIONS_IN_QUIZ) {
+        this.endQuiz = true;
+    }
+    return this.endQuiz;
+};
+
+QuestionGenerator.prototype.timeCountdown = function() {
+    var timeLeft = NUM_SECONDS_TIME_TRIAL;
+    setInterval(function() {
+        --timeLeft;
+        if (timeLeft <= 0) {
+            showFinalScore();
+        } else {
+            showRemainingTime(timeLeft);
+        }
+    }, 1000);
 };
