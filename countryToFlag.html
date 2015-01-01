@@ -46,6 +46,8 @@
             if (gameMode == GAME_MODE_TIME_TRIAL) {
                 document.getElementById("footer").className =
                         document.getElementById("footer").className + " timeMode";
+            } else if (gameMode == GAME_MODE_INFINITE) {
+                document.getElementById("footer").className = "hidden";
             }
             showNextQuestion();
         }

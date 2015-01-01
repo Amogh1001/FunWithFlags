@@ -30,3 +30,7 @@
 .timeMode #remainingTime {
     float: right;
 }
+
+.hidden {
+    visibility: hidden;
+}

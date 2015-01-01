@@ -23,7 +23,7 @@
             gameType = parseInt(url.substring(url.indexOf('?') + 1, url.length));
         }
         function selected(choice) {
-            for (var i = 0; i < 2; ++i) {
+            for (var i = 0; i < 4; ++i) {
                 document.getElementById("option" + i).className = "textChoice";
             }
             document.getElementById("option" + choice).className =
@@ -67,6 +67,9 @@
     </div>
     <div class="textChoice" id="option2" onclick="selected(2)">
         <p>Time Trial</p>
+    </div>
+    <div class="textChoice" id="option3" onclick="selected(3)">
+        <p>Never Say Die</p>
     </div>
 </body>
 </html>
