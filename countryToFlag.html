@@ -43,6 +43,10 @@
             var url = window.location.href;
             var gameMode = url.substring(url.indexOf('?') + 1, url.length);
             quizMaster = new QuizMaster(countryData.length, gameMode);
+            if (gameMode == GAME_MODE_TIME_TRIAL) {
+                document.getElementById("footer").className =
+                        document.getElementById("footer").className + " timeMode";
+            }
             showNextQuestion();
         }
 
@@ -90,7 +94,7 @@
         }
 
         function showRemainingTime(timeLeft) {
-            document.getElementById("remainingTime").innerHTML = "Time Left: " + timeLeft;
+            document.getElementById("remainingTime").innerHTML = "Time: " + timeLeft;
         }
     </script>
     <div class="pageTitle">
@@ -113,7 +117,7 @@
             <img id="img3"/>
         </div>
     </div>
-    <div class="pageFooter">
+    <div id="footer" class="pageFooter">
         <hr/>
         <h2 id="score"/>
         <h2 id="remainingTime"/>
