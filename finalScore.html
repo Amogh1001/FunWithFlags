@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/textChoice.css">
     <link rel="stylesheet" type="text/css" href="css/pageFooter.css">
     <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
+    <link rel="stylesheet" type="text/css" href="css/buttonClickAnimation.css">
     <style>
         p {
             width: 80%;
@@ -23,6 +24,7 @@
         }
         #footer {
             bottom: 5%;
+            background-color: #f0f0f0;
         }
     </style>
 </head>
@@ -40,7 +42,7 @@
 
         function selected(choice) {
             document.getElementById("option" + choice).className =
-                    document.getElementById("option" + choice).className + " correct";
+                    document.getElementById("option" + choice).className + " animateButtonClick";
             if (choice == 0) {
                 setTimeout(function() {
                     window.location.href = replayUrl;
@@ -54,26 +56,17 @@
     </script>
     <div class="pageTitle">
         <h2 id="finalScoreHead">Final score</h2>
-        <hr/>
     </div>
     <div id="score">
         <p id="scoreValue"/>
     </div>
     <div class="pageFooter" id="footer">
-        <table>
-            <td>
-                <tr>
-                    <div id="option0" onclick="selected(0)" class="textChoice">
-                        <h3>Play Again</h3>
-                    </div>
-                </tr>
-                <tr>
-                    <div id="option1" onclick="selected(1)" class="textChoice">
-                        <h3>Main Menu</h3>
-                    </div>
-                </tr>
-            </td>
-        </table>
+        <div id="option0" onclick="selected(0)" class="textChoice">
+            <h3>Play Again</h3>
+        </div>
+        <div id="option1" onclick="selected(1)" class="textChoice">
+            <h3>Main Menu</h3>
+        </div>
     </div>
 </body>
 </html>

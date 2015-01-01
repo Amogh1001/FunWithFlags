@@ -4,22 +4,20 @@
  */
 
 .pageFooter {
-    background-color: #191919;
+    background-color: #3f403d;
     position: fixed;
     bottom: 0;
-    margin-top: 6%;
-    width: 100%;
-}
-
-.pageFooter hr {
-    margin-left: 6%;
-    margin-right: 6%;
-    color: white;
+    width: 96%;
+    padding: 1%;
+    margin-right: 1%;
+    margin-left: 1%;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
 }
 
 .pageFooter h2 {
     text-align: center;
-    color: #ff3333;
+    color: #f0f0f0;
     margin: 6%;
 }
 

@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
     <link rel="stylesheet" type="text/css" href="css/textChoice.css">
     <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
+    <link rel="stylesheet" type="text/css" href="css/buttonClickAnimation.css">
 </head>
 <body class="animateFadeIn">
     <script src="js/constants.js"></script>
@@ -22,7 +23,7 @@
                 document.getElementById("option" + i).className = "textChoice";
             }
             document.getElementById("option" + choice).className =
-                    document.getElementById("option" + choice).className + " correct";
+                    document.getElementById("option" + choice).className + " animateButtonClick";
             gameType = choice;
             selectMode();
         }
@@ -34,7 +35,6 @@
     </script>
     <div class="pageTitle">
         <h2>Game Type</h2>
-        <hr/>
     </div>
     <div class="textChoice" id="option0" onclick="selected(0)">
         <p>Country to Flag</p>

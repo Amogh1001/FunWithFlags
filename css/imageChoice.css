@@ -4,15 +4,17 @@
  */
 
 .imageChoice {
-    margin: 6%;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-bottom: 10%;
     padding: 4%;
     width: 28%;
     border-radius: 5px;
-    border: 2px solid #cc9900;
+    border: 2px solid #3f403d;
 }
 .correct {
-    border-color: #00ff66;
+    border-color: #33cc33;
 }
 .wrong {
-    border-color: #ff0033;
+    border-color: #ff3333;
 }

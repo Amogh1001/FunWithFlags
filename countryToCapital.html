@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/textChoice.css">
     <link rel="stylesheet" type="text/css" href="css/pageFooter.css">
     <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
+    <link rel="stylesheet" type="text/css" href="css/buttonClickAnimation.css">
     <style>
         img {
             width: 100%;
@@ -76,12 +77,12 @@
         function selected(choice) {
             if (quizMaster.isCorrect(choice)) {
                 document.getElementById("option" + choice).className =
-                        document.getElementById("option" + choice).className + " correct";
+                        document.getElementById("option" + choice).className + " animateButtonClick correct";
 
                 animateAndNextQuestion();
             } else {
                 document.getElementById("option" + choice).className =
-                        document.getElementById("option" + choice).className + " wrong";
+                        document.getElementById("option" + choice).className + " animateButtonClick wrong";
             }
         }
 
@@ -91,7 +92,6 @@
     </script>
     <div class="pageTitle">
         <h2 id="countryName"></h2>
-        <hr/>
     </div>
     <div id="option0" onclick="selected(0)">
         <p id="name0"/>
@@ -106,7 +106,6 @@
         <p id="name3"/>
     </div>
     <div id="footer" class="pageFooter">
-        <hr/>
         <h2 id="score"/>
         <h2 id="remainingTime"/>
     </div>

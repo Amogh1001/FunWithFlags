@@ -7,10 +7,10 @@
     margin: 6%;
 }
 .plainText p {
-    color: white;
+    color: black;
 }
 .plainText hr {
-    color: #ccff00;
+    color: black;
     margin: auto;
     width: 20%;
 }

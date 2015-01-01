@@ -8,21 +8,24 @@
     margin-right: 6%;
     margin-top: 4%;
     border-radius: 5px;
-    border: 2px solid #cc9900;
+    border: 2px solid #3f403d;
 }
 .textChoice p {
     width: 100%;
     text-align: center;
-    color: #ccff00;
+    color: #3f403d;
     font-weight: bold;
 }
 .textChoice h3 {
     text-align: center;
-    color: #ccff00;
+    color: #3f403d;
 }
 .correct {
-    border-color: #00ff66;
+    border-color: #33cc33;
 }
 .wrong {
-    border-color: #ff0033;
+    border-color: #ff3333;
+}
+.selected {
+    border-color: #9933cc;
 }

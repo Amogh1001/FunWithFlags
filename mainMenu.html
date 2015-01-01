@@ -12,14 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
     <link rel="stylesheet" type="text/css" href="css/textChoice.css">
     <link rel="stylesheet" type="text/css" href="css/fadeInAnimation.css">
-    <style>
-        #gameTitle {
-            margin-top: 10%;
-        }
-        #gameTitle hr {
-            margin-top: 10%;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/buttonClickAnimation.css">
 </head>
 <body class="animateFadeIn">
     <script type="text/javascript">
@@ -28,7 +21,7 @@
                 document.getElementById("option" + i).className = "textChoice";
             }
             document.getElementById("option" + choice).className =
-                    document.getElementById("option" + choice).className + " correct";
+                    document.getElementById("option" + choice).className + " animateButtonClick";
             
             setTimeout(function() {
                 window.location.href = menuLocation(choice);
@@ -50,8 +43,7 @@
         }
     </script>
     <div class="pageTitle" id="gameTitle">
-        <h1>Fun With Flags</h1>
-        <hr/>
+        <h2>Fun With Flags</h2>
     </div>
     <div id="option0" class="textChoice" onclick="selected(0)">
         <p>Play</p>

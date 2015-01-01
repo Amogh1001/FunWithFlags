@@ -1,0 +1,33 @@
+/**
+ * Project: Fun With Flags
+ * Author: Amogh Bihani
+ */
+
+@keyframes buttonClick {
+    0% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(0.98, 0.98, 0.98);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+@-webkit-keyframes buttonClick {
+    0% {
+        -webkit-transform: none;
+    }
+    50% {
+        -webkit-transform: scale3d(0.98, 0.98, 0.98);
+    }
+    100% {
+        -webkit-transform: none;
+    }
+}
+
+.animateButtonClick {
+    animation: buttonClick 0.25s;
+    -webkit-animation: buttonClick 0.25s;
+}
