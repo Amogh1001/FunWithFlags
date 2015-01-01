@@ -40,17 +40,23 @@
         var gameMode = GAME_MODE_NONE;
         var numQuestions = 0;
         var firstAttempt = false;
+        var timeLeft = NUM_SECONDS_TIME_TRIAL;
         function load() {
+            setTimeout(function() {
+                document.body.className = "";
+            }, 500);
             questionGenerator = new QuestionGenerator(countryData.length, NUM_OPTIONS);
-            this.nextQuestion();
             var url = window.location.href;
             gameMode = url.substring(url.indexOf('?') + 1, url.length);
+            if (gameMode == GAME_MODE_TIME_TRIAL) {
+                startTimer();
+            }
+            this.nextQuestion();
         }
 
         function nextQuestion() {
             questionGenerator.nextQuestion();
             numQuestions++;
-            firstAttempt = true;
             document.getElementById("countryName").innerHTML = countryData[questionGenerator.question].name;
             for (var i = 0; i < 4; ++i) {
                 document.getElementById("option" + i).className = "imageChoice";
@@ -67,11 +73,9 @@
             if (numQuestions == NUM_QUESTIONS_IN_QUIZ && gameMode == GAME_MODE_QUIZ)
                 endQuiz = true;
 
-            if (choice == questionGenerator.answer) {
+            if (questionGenerator.isCorrect(choice)) {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " correct";
-                if (firstAttempt)
-                    questionGenerator.score++;
 
                 if (endQuiz) {
                     setTimeout(function() {
@@ -80,20 +84,35 @@
                     return;
                 }
 
-                setTimeout(function() {
-                    document.body.className = "animateFadeIn";
-                    this.nextQuestion();
-                }, 500);
-                setTimeout(function() {
-                    document.body.className = "";
-                }, 1);
+                animateAndNextQuestion();
             } else {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " wrong";
-                firstAttempt = false;
                 if (gameMode == GAME_MODE_ARCADE)
                     endQuiz = true;
             }
+        }
+
+        function startTimer() {
+            setTimeout(function() {
+                --timeLeft;
+                if (timeLeft <= 0) {
+                    showFinalScore();
+                } else {
+                    document.getElementById("remainingTime").innerHTML = "Time Left: " + timeLeft;
+                    startTimer();
+                }
+            }, 1000);
+        }
+
+        function animateAndNextQuestion() {
+            setTimeout(function() {
+                document.body.className = "animateFadeIn";
+                this.nextQuestion();
+            }, 500);
+            setTimeout(function() {
+                document.body.className = "";
+            }, 1000);
         }
     </script>
     <div class="pageTitle">
@@ -119,6 +138,7 @@
     <div class="pageFooter">
         <hr/>
         <h2 id="score"/>
+        <h2 id="remainingTime"/>
     </div>
 </body>
 </html>

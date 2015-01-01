@@ -11,10 +11,12 @@ function QuestionGenerator(numCountries, numChoices) {
     this.question; // Country ID to be asked
     this.answer; // Correct choice ID
     this.score = 0;
+    this.firstAttempt = true;
 }
 
 QuestionGenerator.prototype.nextQuestion = function() {
     var tempQues;
+    this.firstAttempt = true;
     do {
         tempQues = this.getRandomNumber(this.numCountries);
     } while(this.isQuestionRecentlyAsked(tempQues));
@@ -68,4 +70,15 @@ QuestionGenerator.prototype.isValidChoice = function(choice, choiceNumber) {
     }
 
     return true;
+};
+
+QuestionGenerator.prototype.isCorrect = function(choice) {
+    if (choice == this.answer) {
+        if (this.firstAttempt)
+            ++this.score;
+        return true;
+    } else {
+        this.firstAttempt = false;
+        return false;
+    }
 };

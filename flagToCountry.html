@@ -29,6 +29,9 @@
         var numQuestions = 0;
         var firstAttempt = false;
         function load() {
+            setTimeout(function() {
+                document.body.className = "";
+            }, 500);
             questionGenerator = new QuestionGenerator(countryData.length, NUM_OPTIONS);
             this.nextQuestion();
             var url = window.location.href;
@@ -38,7 +41,6 @@
         function nextQuestion() {
             questionGenerator.nextQuestion(); 
             numQuestions++;
-            firstAttempt = true;
             document.getElementById("countryFlag").src = countryData[questionGenerator.question].source;
             for (var i = 0; i < 4; ++i) {
                 document.getElementById("option" + i).className = "textChoice";
@@ -55,11 +57,9 @@
             if (numQuestions == NUM_QUESTIONS_IN_QUIZ && gameMode == GAME_MODE_QUIZ)
                 endQuiz = true;
 
-            if (choice == questionGenerator.answer) {
+            if (questionGenerator.isCorrect(choice)) {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " correct";
-                if (firstAttempt)
-                    questionGenerator.score++;
 
                 if (endQuiz) {
                     setTimeout(function() {
@@ -68,20 +68,23 @@
                     return;
                 }
 
-                setTimeout(function() {
-                    document.body.className = "animateFadeIn";
-                    this.nextQuestion();
-                }, 500);
-                setTimeout(function() {
-                    document.body.className = "";
-                }, 1);
+                animateAndNextQuestion();
             } else {
                 document.getElementById("option" + choice).className =
                         document.getElementById("option" + choice).className + " wrong";
-                firstAttempt = false;
                 if (gameMode == GAME_MODE_ARCADE)
                     endQuiz = true;
             }
+        }
+
+        function animateAndNextQuestion() {
+            setTimeout(function() {
+                document.body.className = "animateFadeIn";
+                this.nextQuestion();
+            }, 500);
+            setTimeout(function() {
+                document.body.className = "";
+            }, 1000);
         }
     </script>
     <div class="pageTitle">
