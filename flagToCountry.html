@@ -25,19 +25,30 @@
     <script src="js/quizMaster.js"></script>
     <script src="js/constants.js"></script>
     <script type="text/javascript">
+        var countDownTitle;
         function load() {
             setTimeout(function() {
                 document.body.className = "";
             }, 500);
             var url = window.location.href;
-            var gameMode = url.substring(url.indexOf('?') + 1, url.length);
-            quizMaster = new QuizMaster(countryData.length, gameMode);
-            if (gameMode == GAME_MODE_TIME_TRIAL) {
-                document.getElementById("footer").className =
-                        document.getElementById("footer").className + " timeMode";
-            } else if (gameMode == GAME_MODE_INFINITE) {
+            var gameMode = parseInt(url.substring(url.indexOf('?') + 1, url.length));
+            switch(gameMode) {
+            case GAME_MODE_ARCADE:
+                countDownTitle = "Lives";
+                break;
+            case GAME_MODE_QUIZ:
+                countDownTitle = "Ques";
+                break;
+            case GAME_MODE_TIME_TRIAL:
+                countDownTitle = "Time";
+                break;
+            case GAME_MODE_INFINITE:
                 document.getElementById("footer").className = "hidden";
+                break;
+            default:
+                break;
             }
+            quizMaster = new QuizMaster(countryData.length, gameMode);
             showNextQuestion();
         }
 
@@ -84,8 +95,8 @@
             }
         }
 
-        function showRemainingTime(timeLeft) {
-            document.getElementById("remainingTime").innerHTML = "Time: " + timeLeft;
+        function showCountDown(countDownItem) {
+            document.getElementById("remaining").innerHTML = countDownTitle + ": " + countDownItem;
         }
     </script>
     <div class="pageTitle">
@@ -105,7 +116,7 @@
     </div>
     <div id="footer" class="pageFooter">
         <h2 id="score"/>
-        <h2 id="remainingTime"/>
+        <h2 id="remaining"/>
     </div>
 </body>
 </html>

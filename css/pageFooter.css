@@ -21,11 +21,11 @@
     margin: 6%;
 }
 
-.timeMode #score {
+.pageFooter #score {
     float: left;
 }
 
-.timeMode #remainingTime {
+.pageFooter #remaining {
     float: right;
 }
 

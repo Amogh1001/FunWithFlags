@@ -15,16 +15,24 @@ function QuizMaster(numCountries, gameMode) {
     this.firstAttempt = true;
     this.numQuestions = 0;
     this.endQuiz = false;
+    this.lives = 3;
+
+    if (this.gameMode == GAME_MODE_ARCADE) {
+        showCountDown(this.lives);
+    }
 
     if (this.gameMode == GAME_MODE_TIME_TRIAL) {
         this.timeCountdown();
-        showRemainingTime(NUM_SECONDS_TIME_TRIAL);
+        showCountDown(NUM_SECONDS_TIME_TRIAL);
     }
 }
 
 QuizMaster.prototype.nextQuestion = function() {
     var tempQues;
     this.firstAttempt = true;
+    if (this.gameMode == GAME_MODE_QUIZ) {
+        showCountDown(NUM_QUESTIONS_IN_QUIZ - this.numQuestions);
+    }
     ++this.numQuestions;
     do {
         tempQues = this.getRandomNumber(this.numCountries);
@@ -88,8 +96,12 @@ QuizMaster.prototype.isCorrect = function(choice) {
         return true;
     } else {
         this.firstAttempt = false;
-        if (this.gameMode == GAME_MODE_ARCADE)
-            this.endQuiz = true;
+        if (this.gameMode == GAME_MODE_ARCADE) {
+            --this.lives;
+            showCountDown(this.lives);
+            if (this.lives == 0)
+                this.endQuiz = true;
+        }
         return false;
     }
 };
@@ -109,7 +121,7 @@ QuizMaster.prototype.timeCountdown = function() {
         if (timeLeft <= 0) {
             showFinalScore();
         } else {
-            showRemainingTime(timeLeft);
+            showCountDown(timeLeft);
         }
     }, 1000);
 };
