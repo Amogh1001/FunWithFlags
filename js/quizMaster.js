@@ -97,7 +97,8 @@ QuizMaster.prototype.isCorrect = function(choice) {
     } else {
         this.firstAttempt = false;
         if (this.gameMode == GAME_MODE_ARCADE) {
-            --this.lives;
+            if (this.lives > 0)
+                --this.lives;
             showCountDown(this.lives);
             if (this.lives == 0)
                 this.endQuiz = true;
