@@ -8,7 +8,7 @@
         transform: none;
     }
     50% {
-        transform: scale3d(0.98, 0.98, 0.98);
+        transform: scale3d(0.95, 0.95, 0.95);
     }
     100% {
         transform: none;
@@ -20,7 +20,7 @@
         -webkit-transform: none;
     }
     50% {
-        -webkit-transform: scale3d(0.98, 0.98, 0.98);
+        -webkit-transform: scale3d(0.95, 0.95, 0.95);
     }
     100% {
         -webkit-transform: none;
