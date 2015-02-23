@@ -8,17 +8,17 @@
     margin-right: 6%;
     margin-top: 4%;
     border-radius: 5px;
-    border: 2px solid #3f403d;
+    border: 2px solid #6600ff;
 }
 .textChoice p {
     width: 100%;
     text-align: center;
-    color: #3f403d;
+    color: #ff0066;
     font-weight: bold;
 }
 .textChoice h3 {
     text-align: center;
-    color: #3f403d;
+    color: #ff0066;
 }
 .correct {
     border-color: #33cc33;
