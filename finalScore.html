@@ -19,8 +19,14 @@
             width: 80%;
             margin: 10%;
             text-align: center;
+        }
+        #scoreValue {
             font-size: 400%;
-            color: #00ff66;
+            color: #00cc00;
+        }
+        #highScoreValue {
+            font-size: 250%;
+            color: #ff6633;
         }
         #footer {
             bottom: 5%;
@@ -31,13 +37,17 @@
 <body onload="load()" class="animatefadeIn">
     <script type="text/javascript">
         var score;
+        var highScore;
         var replayUrl;
         function load() {
             var url = window.location.href;
             score = url.substring(url.indexOf('?') + 1, url.indexOf('#'));
-            replayUrl = url.substring(url.indexOf('#') + 1, url.length);
+            extras = url.substring(url.indexOf('#') + 1, url.length);
+            highScore = extras.substring(0, extras.indexOf('#'));
+            replayUrl = extras.substring(extras.indexOf('#') + 1, extras.length);
 
             document.getElementById("scoreValue").innerHTML = score;
+            document.getElementById("highScoreValue").innerHTML = "Best: " + highScore;
         }
 
         function selected(choice) {
@@ -59,6 +69,9 @@
     </div>
     <div id="score">
         <p id="scoreValue"/>
+    </div>
+    <div id="highScore">
+        <p id="highScoreValue"/>
     </div>
     <div class="pageFooter" id="footer">
         <div id="option0" onclick="selected(0)" class="textChoice">

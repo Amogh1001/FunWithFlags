@@ -28,12 +28,13 @@
     <script src="js/constants.js"></script>
     <script type="text/javascript">
         var countDownTitle;
+        var gameMode;
         function load() {
             setTimeout(function() {
                 document.body.className = "";
             }, 500);
             var url = window.location.href;
-            var gameMode = parseInt(url.substring(url.indexOf('?') + 1, url.length));
+            gameMode = parseInt(url.substring(url.indexOf('?') + 1, url.length));
             switch(gameMode) {
             case GAME_MODE_ARCADE:
                 countDownTitle = "Lives";
@@ -81,8 +82,31 @@
 
         function showFinalScore() {
             setTimeout(function() {
-                window.location.href = "finalScore.html?" + quizMaster.score + "#" + window.location.href;
+                window.location.href = "finalScore.html?" + quizMaster.score + "#" + getHighestScore() + "#" + window.location.href;
             }, 500);
+        }
+
+        function getHighestScore() {
+            switch(gameMode) {
+            case GAME_MODE_ARCADE:
+                if (localStorage.arcade_countryToCapital == undefined
+                    || localStorage.arcade_countryToCapital < quizMaster.score) {
+                    localStorage.arcade_countryToCapital = quizMaster.score;
+                }
+                return localStorage.arcade_countryToCapital;
+            case GAME_MODE_QUIZ:
+                if (localStorage.quiz_countryToCapital == undefined
+                    || localStorage.quiz_countryToCapital < quizMaster.score) {
+                    localStorage.quiz_countryToCapital = quizMaster.score
+                }
+                return localStorage.quiz_countryToCapital;
+            case GAME_MODE_TIME_TRIAL:
+                if (localStorage.time_countryToCapital == undefined
+                    || localStorage.time_countryToCapital < quizMaster.score) {
+                    localStorage.time_countryToCapital = quizMaster.score;
+                }
+                return localStorage.time_countryToCapital;
+            }
         }
 
         function selected(choice) {
