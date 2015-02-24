@@ -1,0 +1,115 @@
+<!--
+ * Project: Fun With Flags
+ * Author: Amogh Bihani
+-->
+
+<!DOCTYPE>
+<html>
+<head>
+    <title> Fun With Flags </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="css/pageTitle.css">
+    <link rel="stylesheet" type="text/css" href="css/plainText.css">
+    <link rel="stylesheet" type="text/css" href="css/subHeading.css">
+</head>
+<body class="animateFadeIn" onload="load()">
+    <script type="text/javascript">
+        function load() {
+            insertScore(
+                "countryToFlagScores",
+                localStorage.arcade_countryToFlag,
+                localStorage.quiz_countryToFlag,
+                localStorage.time_countryToFlag);
+
+            insertScore(
+                "flagToCountryScores",
+                localStorage.arcade_flagToCountry,
+                localStorage.quiz_flagToCountry,
+                localStorage.time_flagToCountry);
+
+            insertScore(
+                "flagToCapitalScores",
+                localStorage.arcade_flagToCapital,
+                localStorage.quiz_flagToCapital,
+                localStorage.time_flagToCapital);
+
+            insertScore(
+                "countryToCapitalScores",
+                localStorage.arcade_countryToCapital,
+                localStorage.quiz_countryToCapital,
+                localStorage.time_countryToCapital);
+        }
+
+        function insertScore(tableType, arcadeScore, quizScore, timeScore) {
+            var tbl=document.getElementById(tableType);
+            var tbdy=document.createElement('tbody');
+            for(var i = 2; i >= 0; --i) {
+                var tr = tbl.insertRow();
+
+                var scoreTd = tr.insertCell();
+                var score = scoreTd.appendChild(document.createElement('p'));
+
+                var typeTd = tr.insertCell();
+                var type = typeTd.appendChild(document.createElement('p'));
+
+                switch(i) {
+                case 2:
+                    if (timeScore == undefined) {
+                        timeScore = 0;
+                    }
+                    score.innerHTML = timeScore;
+                    type.innerHTML = "Time Trial";
+                    break;
+                case 1:
+                    if (quizScore == undefined) {
+                        quizScore = 0;
+                    }
+                    score.innerHTML = quizScore;
+                    type.innerHTML = "Quiz";
+                    break;
+                case 0:
+                    if (arcadeScore == undefined) {
+                        arcadeScore = 0;
+                    }
+                    score.innerHTML = arcadeScore;
+                    type.innerHTML = "Arcade";
+                    break;
+                }
+            }
+            tbl.appendChild(tbdy);
+        }
+    </script>
+    <div class="pageTitle">
+        <h2>Highest Scores</h2>
+    </div>
+    <div class="subHeading">
+        <p>Country to Flag</p>
+    </div>
+    <div class="plainText">
+        <table id="countryToFlagScores">
+        </table>
+    </div>
+    <div class="subHeading">
+        <p>Flag to Country</p>
+    </div>
+    <div class="plainText">
+        <table id="flagToCountryScores">
+        </table>
+    </div>
+    <div class="subHeading">
+        <p>Flag to Capital</p>
+    </div>
+    <div class="plainText">
+        <table id="flagToCapitalScores">
+        </table>
+    </div>
+    <div class="subHeading">
+        <p>Country to Capital</p>
+    </div>
+    <div class="plainText">
+        <table id="countryToCapitalScores">
+        </table>
+    </div>
+</body>
+</html>

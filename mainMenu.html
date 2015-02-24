@@ -30,15 +30,17 @@
         function menuLocation(choice) {
             switch(choice) {
             case 0:
-                return "selectGameType.html"
+                return "selectGameType.html";
             case 1:
-                return "gameRules.html"
+                return "highestScores.html";
             case 2:
-                return "listOfCountries.html"
+                return "gameRules.html";
             case 3:
-                return "listOfCapitals.html"
+                return "listOfCountries.html";
             case 4:
-                return "aboutGame.html"
+                return "listOfCapitals.html";
+            case 5:
+                return "aboutGame.html";
             };
         }
     </script>
@@ -49,15 +51,18 @@
         <p>Play</p>
     </div>
     <div id="option1" class="textChoice" onclick="selected(1)">
+        <p>High Scores</p>
+    </div>
+    <div id="option1" class="textChoice" onclick="selected(2)">
         <p>Rules</p>
     </div>
-    <div id="option2" class="textChoice" onclick="selected(2)">
+    <div id="option2" class="textChoice" onclick="selected(3)">
         <p>List of Countries</p>
     </div>
-    <div id="option3" class="textChoice" onclick="selected(3)">
+    <div id="option3" class="textChoice" onclick="selected(4)">
         <p>List of capitals</p>
     </div>
-    <div id="option4" class="textChoice" onclick="selected(4)">
+    <div id="option4" class="textChoice" onclick="selected(5)">
         <p>About Game</p>
     </div>
 </body>
